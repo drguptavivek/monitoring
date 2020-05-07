@@ -16,35 +16,15 @@ ls -al
 sudo cp node_exporter /usr/local/bin
 sudo useradd -rs /bin/false node_exporter
 sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
+
+```
+
+Get the file [here](./node_exporter.service)  
+```
 cd /lib/systemd/system
+
 sudo touch node_exporter.service
-
 sudo nano node_exporter.service
-```
-
-```
-[Unit]
-Description=Node Exporter
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-Type=simple
-User=node_exporter
-Group=node_exporter
-ExecStart=/usr/local/bin/node_exporter \
-    --collector.mountstats \
-    --collector.logind \
-    --collector.processes \
-    --collector.ntp \
-    --collector.systemd \
-    --collector.tcpstat \
-    --collector.wifi
-
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
 
 ```
 
